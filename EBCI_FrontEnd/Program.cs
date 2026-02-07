@@ -1,4 +1,4 @@
-using EBCI_FrontEnd.Components;
+using EBCI_FrontEnd.Views.Main;
 
 namespace EBCI_FrontEnd {
     public static class Program {

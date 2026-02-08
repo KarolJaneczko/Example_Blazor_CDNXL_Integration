@@ -61,55 +61,61 @@
 
             <div>
                 @foreach (var position in NewShipmentPositions) {
-                    <div>Nr: @position.Lp</div>
+                    <section class="ns-position-card" aria-label="Shipment position @position.Lp">
+                        <div class="ns-position-header">
+                            <div class="ns-position-meta">Nr: @position.Lp</div>
 
-                    <div class="ns-field">
-                        <label class="ns-label" for="productCode">
-                            Product code
-                        </label>
-                        <div class="ns-input-group">
-                            <InputText id="productCode"
-                                       class="ns-input"
-                                       @bind-Value="position.ProductCode" />
+                            <div class="ns-position-actions">
+                                <button type="button" class="ns-btn" @onclick="() => RemovePostition_Button_Clicked(position)">Remove</button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="ns-field">
-                        <label class="ns-label" for="quantity">
-                            Quantity
-                        </label>
-                        <div class="ns-input-group">
-                            <InputNumber id="quantity"
-                                         class="ns-input"
-                                         @bind-Value="position.Quantity" />
+                        <div class="ns-position-grid">
+                            <div class="ns-field">
+                                <label class="ns-label" for="productCode">
+                                    Product code
+                                </label>
+                                <div class="ns-input-group">
+                                    <InputText id="productCode"
+                                               class="ns-input"
+                                               @bind-Value="position.ProductCode" />
+                                </div>
+                            </div>
+
+                            <div class="ns-field">
+                                <label class="ns-label" for="quantity">
+                                    Quantity
+                                </label>
+                                <div class="ns-input-group">
+                                    <InputNumber id="quantity"
+                                                 class="ns-input"
+                                                 @bind-Value="position.Quantity" />
+                                </div>
+                            </div>
+
+                            <div class="ns-field">
+                                <label class="ns-label" for="batch">
+                                    Batch
+                                </label>
+                                <div class="ns-input-group">
+                                    <InputText id="batch"
+                                               class="ns-input"
+                                               @bind-Value="position.Batch" />
+                                </div>
+                            </div>
+
+                            <div class="ns-field">
+                                <label class="ns-label" for="expirationDate">
+                                    Expiration date
+                                </label>
+                                <div class="ns-input-group">
+                                    <InputDate id="expirationDate"
+                                               class="ns-input"
+                                               @bind-Value="position.ExpirationDate" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="ns-field">
-                        <label class="ns-label" for="batch">
-                            Batch
-                        </label>
-                        <div class="ns-input-group">
-                            <InputText id="batch"
-                                       class="ns-input"
-                                       @bind-Value="position.Batch" />
-                        </div>
-                    </div>
-
-                    <div class="ns-field">
-                        <label class="ns-label" for="expirationDate">
-                            Expiration date
-                        </label>
-                        <div class="ns-input-group">
-                            <InputDate id="expirationDate"
-                                       class="ns-input"
-                                       @bind-Value="position.ExpirationDate" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="button" class="ns-btn" @onclick="() => RemovePostition_Button_Clicked(position)">Remove</button>
-                    </div>
+                    </section>
                 }
             </div>
         </div>

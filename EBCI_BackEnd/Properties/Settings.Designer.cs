@@ -67,5 +67,14 @@ namespace EBCI_BackEnd.Properties {
                 return ((string)(this["XLLicenseServer"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int XLBatchId {
+            get {
+                return ((int)(this["XLBatchId"]));
+            }
+        }
     }
 }

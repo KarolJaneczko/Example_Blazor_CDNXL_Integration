@@ -84,6 +84,90 @@ namespace EBCI_BackEnd.Services {
             return result;
         }
 
+        public bool Logout(out string message) {
+            message = null;
+            var result = false;
+
+            var apiResult = cdn_api.cdn_api.XLLogout(SessionId);
+            if (apiResult == 0) {
+                result = true;
+            } else {
+                switch (apiResult) {
+                    case -2:
+                        message = "błąd otwarcia pliku tekstowego, do którego mają być zapisywane komunikaty";
+                        break;
+                    case -1:
+                        message = "nie zawołano poprawnie XLLogin";
+                        break;
+                    case 2:
+                        message = "występuje w przypadku, gdy istnieje już jedna instancja programu i nastąpi ponowne logowanie (z tego samego komputera i na tego samego operatora)";
+                        break;
+                    case 3:
+                        message = "występuje w przypadku, gdy istnieje już jedna instancja programu i nastąpi ponowne logowanie z innego komputera i na tego samego operatora, ale operator nie posiada prawa do wielokrotnego logowania";
+                        break;
+                    case 5:
+                        message = "występuje przy pracy terminalowej w przypadku, gdy operator nie ma prawa do wielokrotnego logowania i na pytanie czy usunąć istniejące sesje terminalowe wybrano odpowiedź ‘Nie’.";
+                        break;
+                    default:
+                        message = $"Nie zdefiniowano komunikatu, wynik: {apiResult}, metoda: {nameof(Logout)}";
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        public bool CreateDocument(ref int documentId, XLDokumentNagInfo_20251 xlDokumentNagInfo, out XLDokumentNagInfo_20251 xlDokumentNagInfoResult, out string message) {
+            xlDokumentNagInfoResult = null;
+            message = null;
+            var result = false;
+            xlDokumentNagInfo.Wersja = Version;
+
+            var apiResult = cdn_api.cdn_api.XLNowyDokument(SessionId, ref documentId, xlDokumentNagInfo);
+            if (apiResult == 0) {
+                result = true;
+            } else {
+                GetErrorDescription(new XLKomunikatInfo_20251 { Blad = apiResult }, XLMethodType.NowyDokument, out var getErrorMessage);
+                message = getErrorMessage;
+            }
+
+            return result;
+        }
+
+        public bool NewPosition(int documentId, XLDokumentElemInfo_20251 xlDokumentElemInfo, out XLDokumentElemInfo_20251 xlDokumentElemInfoResult, out string message) {
+            xlDokumentElemInfoResult = null;
+            message = null;
+            var result = false;
+            xlDokumentElemInfo.Wersja = Version;
+
+            var apiResult = cdn_api.cdn_api.XLDodajPozycje(documentId, xlDokumentElemInfo);
+            if (apiResult == 0) {
+                result = true;
+            } else {
+                GetErrorDescription(new XLKomunikatInfo_20251 { Blad = apiResult }, XLMethodType.DodajPozycje, out var getErrorMessage);
+                message = getErrorMessage;
+
+            }
+
+            return result;
+        }
+
+        public bool CloseDocument(int documentId, ref XLZamkniecieDokumentuInfo_20251 xlZamkniecieDokumentuInfo, out string message) {
+            message = null;
+            var result = false;
+            xlZamkniecieDokumentuInfo.Wersja = Version;
+
+            var apiResult = cdn_api.cdn_api.XLZamknijDokument(documentId, xlZamkniecieDokumentuInfo);
+            if (apiResult == 0) {
+                result = true;
+            } else {
+                GetErrorDescription(new XLKomunikatInfo_20251 { Blad = apiResult }, XLMethodType.ZamknijDokument, out var getErrorMessage);
+                message = getErrorMessage;
+            }
+
+            return result;
+        }
+
         public bool GetErrorDescription(XLKomunikatInfo_20251 xlKomunikatInfo, XLMethodType xlMethodType, out string message) {
             var result = false;
             xlKomunikatInfo.Wersja = Version;
@@ -104,12 +188,13 @@ namespace EBCI_BackEnd.Services {
 
         public bool GetDocumentNumber(XLNumerDokumentuInfo_20251 xlNumerDokumentuInfo, out string message) {
             var result = false;
+            message = null;
+
             xlNumerDokumentuInfo.Wersja = Version;
 
             var apiResult = cdn_api.cdn_api.XLPobierzNumerDokumentu(xlNumerDokumentuInfo);
             if (apiResult == 0) {
                 result = true;
-                message = null;
             } else {
                 switch (apiResult) {
                     case -1:

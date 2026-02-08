@@ -117,4 +117,39 @@ SignalR.Transports.WebSocketTransport Warning: 0 : Exception thrown by Task: Sys
    at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
    at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
    at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
-   at Microsoft.AspNet.SignalR
+   at Microsoft.AspNet.SignalRSignalR.Transports.TransportHeartBeat Information: 0 : Connection c30fd985-7f42-445f-ab0d-b13b962ecd96 is New.
+SignalR.Transports.TransportHeartBeat Information: 0 : Connection 780a4850-79df-4bdc-b3df-e4f06dbad05f is New.
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: 780a4850-79df-4bdc-b3df-e4f06dbad05f, transport: WebSocketTransport, message: {"C":"d-A3FAAA39-B,0|E,0|F,1","S":1,"M":[]}
+SignalR.Transports.TransportHeartBeat Verbose: 0 : KeepAlive(c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.TransportHeartBeat Verbose: 0 : Connection c30fd985-7f42-445f-ab0d-b13b962ecd96 exists. Closing previous connection.
+SignalR.Transports.WebSocketTransport Information: 0 : End(c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.WebSocketTransport Verbose: 0 : Cancel(c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.WebSocketTransport Verbose: 0 : DrainWrites(c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.TransportHeartBeat Verbose: 0 : KeepAlive(780a4850-79df-4bdc-b3df-e4f06dbad05f)
+SignalR.Transports.WebSocketTransport Information: 0 : CompleteRequest (c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.WebSocketTransport Error: 0 : OnError(c30fd985-7f42-445f-ab0d-b13b962ecd96, System.Net.WebSockets.WebSocketException (0x80070026): Reached the end of the file
+   at System.Web.WebSockets.WebSocketPipe.<>c__DisplayClass9_0.<ReadFragmentAsync>b__0(Int32 hrError, Int32 cbIO, Boolean fUtf8Encoded, Boolean fFinalFragment, Boolean fClose)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.WebSockets.AspNetWebSocket.<DoWork>d__45`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.WebSockets.AspNetWebSocket.<>c__DisplayClass36_0.<<ReceiveAsyncImpl>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNet.SignalR.WebSockets.WebSocketMessageReader.<ReadMessageAsync>d__3.MoveNext() in /_/src/Microsoft.AspNet.SignalR.Core/Owin/WebSockets/WebSocketMessageReader.cs:line 36
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNet.SignalR.WebSockets.WebSocketHandler.<ProcessWebSocketRequestAsync>d__25.MoveNext() in /_/src/Microsoft.AspNet.SignalR.Core/Owin/WebSockets/WebSocketHandler.cs:line 170)
+SignalR.Transports.WebSocketTransport Information: 0 : CloseSocket(c30fd985-7f42-445f-ab0d-b13b962ecd96)
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: 780a4850-79df-4bdc-b3df-e4f06dbad05f, transport: WebSocketTransport, message: {"R":{"IsSuccess":true,"ResponseMessage":"Success, document was created with number: PZ-5/26"},"I":"0"}
+SignalR.Transports.WebSocketTransport Information: 0 : Abort(780a4850-79df-4bdc-b3df-e4f06dbad05f)
+SignalR.Transports.TransportHeartBeat Information: 0 : Removing connection 780a4850-79df-4bdc-b3df-e4f06dbad05f
+SignalR.Transports.WebSocketTransport Information: 0 : End(780a4850-79df-4bdc-b3df-e4f06dbad05f)
+SignalR.Transports.WebSocketTransport Verbose: 0 : DrainWrites(780a4850-79df-4bdc-b3df-e4f06dbad05f)
+SignalR.Transports.WebSocketTransport Information: 0 : CompleteRequest (780a4850-79df-4bdc-b3df-e4f06dbad05f)
+SignalR.Transports.WebSocketTransport Informatio

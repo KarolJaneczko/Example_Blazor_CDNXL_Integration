@@ -125,6 +125,7 @@ namespace EBCI_BackEnd.Services {
 
             var apiResult = cdn_api.cdn_api.XLNowyDokument(SessionId, ref documentId, xlDokumentNagInfo);
             if (apiResult == 0) {
+                xlDokumentNagInfoResult = xlDokumentNagInfo;
                 result = true;
             } else {
                 GetErrorDescription(new XLKomunikatInfo_20251 { Blad = apiResult }, XLMethodType.NowyDokument, out var getErrorMessage);
@@ -142,6 +143,7 @@ namespace EBCI_BackEnd.Services {
 
             var apiResult = cdn_api.cdn_api.XLDodajPozycje(documentId, xlDokumentElemInfo);
             if (apiResult == 0) {
+                xlDokumentElemInfoResult = xlDokumentElemInfo;
                 result = true;
             } else {
                 GetErrorDescription(new XLKomunikatInfo_20251 { Blad = apiResult }, XLMethodType.DodajPozycje, out var getErrorMessage);

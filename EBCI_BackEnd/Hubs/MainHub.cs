@@ -76,7 +76,7 @@ namespace EBCI_BackEnd.Hubs {
             var zamkniecieInfo = new XLZamkniecieDokumentuInfo_20251 {
                 Tryb = 1
             };
-            if (XLService.CloseDocument(documentId, ref zamkniecieInfo, out var closeDocumentMessage)) {
+            if (!XLService.CloseDocument(documentId, ref zamkniecieInfo, out var closeDocumentMessage)) {
                 closeDocumentMessage = $"Error ocurred at closing the document, response: {closeDocumentMessage}";
                 return new NewShipmentResponse(false, closeDocumentMessage);
             }

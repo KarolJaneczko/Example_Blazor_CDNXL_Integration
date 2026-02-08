@@ -193,6 +193,7 @@
 
             NewShipment.Positions = NewShipmentPositions;
 
+            // todo loading indicator
             var result = await SignalService.TryToAddShipment(new NewShipmentRequest { Shipment = NewShipment });
             IsSuccess = result.IsSuccess;
             StatusMessage = result.ResponseMessage;

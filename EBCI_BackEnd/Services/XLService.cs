@@ -1,0 +1,133 @@
+﻿using cdn_api;
+using EBCI_BackEnd.Classes.Enums;
+
+namespace EBCI_BackEnd.Services {
+    public class XLService {
+        private int SessionId;
+        public int Version { get; }
+
+        public XLService() {
+            Version = 20251;
+            SessionId = -1;
+        }
+
+        public bool Login(string user, string password, string databaseName, string licenseServer, out string message) {
+            message = null;
+            var result = false;
+
+            var loginInfo = new XLLoginInfo_20251 {
+                Wersja = Version,
+                ProgramID = "EBCI_BackEnd",
+                OpeIdent = user,
+                OpeHaslo = password,
+                Baza = databaseName,
+                SerwerKlucza = licenseServer,
+                UtworzWlasnaSesje = 1,
+                Winieta = -1,
+                TrybWsadowy = 1
+            };
+            var sessionId = -1;
+            var apiResult = cdn_api.cdn_api.XLLogin(loginInfo, ref sessionId);
+            if (apiResult == 0) {
+                SessionId = sessionId;
+                result = true;
+            } else {
+                switch (apiResult) {
+                    case -9:
+                        message = "operator nie jest podpięty do żadnego centrum";
+                        break;
+                    case -8:
+                        message = "nie podano nazwy bazy";
+                        break;
+                    case -7:
+                        message = "baza niezarejestrowana w systemie";
+                        break;
+                    case -6:
+                        message = "nie podano hasła lub brak operatora";
+                        break;
+                    case -5:
+                        message = "nieprawidłowe hasło";
+                        break;
+                    case -4:
+                        message = "konto operatora zablokowane";
+                        break;
+                    case -3:
+                        message = "nie podano nazwy programu (pole ProgramID)";
+                        break;
+                    case -2:
+                        message = "błąd otwarcia pliku tekstowego, do którego mają być zapisywane komunikaty. Nie znaleziono ścieżki lub nazwa pliku jest nieprawidłowa.";
+                        break;
+                    case -1:
+                        message = "podano niepoprawną wersję API";
+                        break;
+                    case 1:
+                        message = "inicjalizacja nie powiodła się";
+                        break;
+                    case 2:
+                        message = "występuje w przypadku, gdy istnieje już jedna instancja programu i nastąpi ponowne logowanie (z tego samego komputera i na tego samego operatora)";
+                        break;
+                    case 3:
+                        message = "występuje w przypadku, gdy istnieje już jedna instancja programu i nastąpi ponowne logowanie z innego komputera i na tego samego operatora, ale operator nie posiada prawa do wielokrotnego logowania";
+                        break;
+                    case 5:
+                        message = "występuje przy pracy terminalowej w przypadku, gdy operator nie ma prawa do wielokrotnego logowania i na pytanie czy usunąć istniejące sesje terminalowe wybrano odpowiedź ‘Nie’.";
+                        break;
+                    case 61:
+                        message = "błąd zakładania nowej sesji";
+                        break;
+                    default:
+                        message = $"Nie zdefiniowano komunikatu, wynik: {apiResult}, metoda: {nameof(Login)}";
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        public bool GetErrorDescription(XLKomunikatInfo_20251 xlKomunikatInfo, XLMethodType xlMethodType, out string message) {
+            var result = false;
+            xlKomunikatInfo.Wersja = Version;
+            xlKomunikatInfo.Funkcja = (int)xlMethodType;
+
+            var apiResult = cdn_api.cdn_api.XLOpisBledu(xlKomunikatInfo);
+            if (apiResult == 0) {
+                message = xlKomunikatInfo.OpisBledu;
+                result = true;
+            } else if (xlKomunikatInfo.Tryb == 0 || xlKomunikatInfo.Tryb == 1) {
+                message = $"Nie udało się odczytać treści błędu: {xlKomunikatInfo.Blad}, dla metody: {xlMethodType}";
+            } else {
+                message = $"Nie udało się odczytać treści błędu: {xlKomunikatInfo.Blad} oraz ostrzeżenia: {xlKomunikatInfo.Ostrzezenie}, dla metody: {xlMethodType}";
+            }
+
+            return result;
+        }
+
+        public bool GetDocumentNumber(XLNumerDokumentuInfo_20251 xlNumerDokumentuInfo, out string message) {
+            var result = false;
+            xlNumerDokumentuInfo.Wersja = Version;
+
+            var apiResult = cdn_api.cdn_api.XLPobierzNumerDokumentu(xlNumerDokumentuInfo);
+            if (apiResult == 0) {
+                result = true;
+                message = null;
+            } else {
+                switch (apiResult) {
+                    case -1:
+                        message = "nieaktywna sesja API lub nieprawidłowy numer wersji";
+                        break;
+                    case 1:
+                        message = "nie znaleziono dokumentu";
+                        break;
+                    case 2:
+                        message = "podano nieobsługiwany GIDTyp";
+                        break;
+                    default:
+                        message = $"Nie zdefiniowano komunikatu, wynik: {apiResult}, metoda: {nameof(GetDocumentNumber)}";
+                        break;
+                }
+            }
+
+            return result;
+        }
+    }
+}

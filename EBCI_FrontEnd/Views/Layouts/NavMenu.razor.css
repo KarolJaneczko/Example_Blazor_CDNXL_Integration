@@ -21,6 +21,7 @@
 }
 
 .navbar-brand {
+    width: 3.5rem;
     font-size: 1.1rem;
     word-wrap: normal;
 }

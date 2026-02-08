@@ -1,0 +1,120 @@
+SignalR.Transports.TransportHeartBeat Information: 0 : Connection 65a8ce14-745c-431a-a1bb-a27f81be1728 is New.
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: 65a8ce14-745c-431a-a1bb-a27f81be1728, transport: WebSocketTransport, message: {"C":"d-81A01C53-B,0|C,0|D,1","S":1,"M":[]}
+SignalR.Transports.WebSocketTransport Error: 0 : OnError(65a8ce14-745c-431a-a1bb-a27f81be1728, System.Net.WebSockets.WebSocketException (0x80070026): Reached the end of the file
+   at System.Web.WebSockets.WebSocketPipe.<>c__DisplayClass9_0.<ReadFragmentAsync>b__0(Int32 hrError, Int32 cbIO, Boolean fUtf8Encoded, Boolean fFinalFragment, Boolean fClose)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.WebSockets.AspNetWebSocket.<DoWork>d__45`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.WebSockets.AspNetWebSocket.<>c__DisplayClass36_0.<<ReceiveAsyncImpl>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNet.SignalR.WebSockets.WebSocketMessageReader.<ReadMessageAsync>d__3.MoveNext() in /_/src/Microsoft.AspNet.SignalR.Core/Owin/WebSockets/WebSocketMessageReader.cs:line 36
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNet.SignalR.WebSockets.WebSocketHandler.<ProcessWebSocketRequestAsync>d__25.MoveNext() in /_/src/Microsoft.AspNet.SignalR.Core/Owin/WebSockets/WebSocketHandler.cs:line 170)
+SignalR.Transports.WebSocketTransport Information: 0 : CloseSocket(65a8ce14-745c-431a-a1bb-a27f81be1728)
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-a27f81be1728 is dead
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-a27f81be1728 is dead
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-a27f81be1728 is dead
+SignalR.Transports.TransportHeartBeat Information: 0 : Connection b007f67e-1a11-4bfd-945d-1b13d1370ac0 is New.
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: b007f67e-1a11-4bfd-945d-1b13d1370ac0, transport: WebSocketTransport, message: {"C":"d-81A01C53-B,0|E,0|F,1","S":1,"M":[]}
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-a27f81be1728 is dead
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: b007f67e-1a11-4bfd-945d-1b13d1370ac0, transport: WebSocketTransport, message: {"R":{"IsSuccess":true,"ResponseMessage":"Success"},"I":"0"}
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-a27f81be1728 is dead
+SignalR.Transports.TransportHeartBeat Verbose: 0 : KeepAlive(b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.WebSocketTransport Information: 0 : Abort(b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.TransportHeartBeat Information: 0 : Removing connection b007f67e-1a11-4bfd-945d-1b13d1370ac0
+SignalR.Transports.WebSocketTransport Information: 0 : End(b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.WebSocketTransport Verbose: 0 : DrainWrites(b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.WebSocketTransport Information: 0 : CompleteRequest (b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.WebSocketTransport Information: 0 : CloseSocket(b007f67e-1a11-4bfd-945d-1b13d1370ac0)
+SignalR.Transports.TransportHeartBeat Verbose: 0 : 65a8ce14-745c-431a-a1bb-aSignalR.Transports.TransportHeartBeat Information: 0 : Connection 995ca2bd-4959-4c17-8256-0708f1741168 is New.
+SignalR.Transports.TransportHeartBeat Information: 0 : Connection b99ea717-ef05-42ec-a9e9-13ce741e6bb7 is New.
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: 995ca2bd-4959-4c17-8256-0708f1741168, transport: WebSocketTransport, message: {"C":"d-27BCC15B-B,0|C,0|D,1","S":1,"M":[]}
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: b99ea717-ef05-42ec-a9e9-13ce741e6bb7, transport: WebSocketTransport, message: {"C":"d-27BCC15B-B,0|E,0|F,1","S":1,"M":[]}
+SignalR.Transports.WebSocketTransport Warning: 0 : Exception thrown by Task: System.AggregateException: One or more errors occurred. ---> System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.FromMethod(Func`1 func) in /_/src/Microsoft.AspNet.SignalR.Core/TaskAsyncHelper.cs:line 768
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.FromMethod(Func`1 func) in /_/src/Microsoft.AspNet.SignalR.Core/TaskAsyncHelper.cs:line 768<---
+
+SignalR.Transports.WebSocketTransport Warning: 0 : Exception thrown by Task: System.AggregateException: One or more errors occurred. ---> System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.FromMethod(Func`1 func) in /_/src/Microsoft.AspNet.SignalR.Core/TaskAsyncHelper.cs:line 768
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.FromMethod(Func`1 func) in /_/src/Microsoft.AspNet.SignalR.Core/TaskAsyncHelper.cs:line 768<---
+
+SignalR.Transports.TransportHeartBeat Verbose: 0 : KeepAlive(b99ea717-ef05-42ec-a9e9-13ce741e6bb7)
+SignalR.Transports.TransportHeartBeat Verbose: 0 : KeepAlive(995ca2bd-4959-4c17-8256-0708f1741168)
+SignalR.Transports.TransportHeartBeat Information: 0 : Connection e05a34ae-6c88-4574-bfe2-183b61530332 is New.
+SignalR.Transports.WebSocketTransport Verbose: 0 : Sending outgoing message. Connection id: e05a34ae-6c88-4574-bfe2-183b61530332, transport: WebSocketTransport, message: {"C":"d-27BCC15B-B,0|G,0|H,1","S":1,"M":[]}
+SignalR.Transports.WebSocketTransport Warning: 0 : Exception thrown by Task: System.AggregateException: One or more errors occurred. ---> System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.FromMethod(Func`1 func) in /_/src/Microsoft.AspNet.SignalR.Core/TaskAsyncHelper.cs:line 768
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.MissingMethodException: No parameterless constructor defined for this object.
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubActivator.Create(HubDescriptor descriptor) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/DefaultHubActivator.cs:line 29
+   at Microsoft.AspNet.SignalR.Hubs.DefaultHubManager.ResolveHub(String hubName) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/Lookup/DefaultHubManager.cs:line 96
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.CreateHub(IRequest request, HubDescriptor descriptor, String connectionId, StateChangeTracker tracker, Boolean throwIfFailedToCreate) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 472
+   at Microsoft.AspNet.SignalR.Hubs.HubDispatcher.OnReceived(IRequest request, String connectionId, String data) in /_/src/Microsoft.AspNet.SignalR.Core/Hubs/HubDispatcher.cs:line 178
+   at Microsoft.AspNet.SignalR.PersistentConnection.<>c__DisplayClass64_1.<ProcessRequestPostGroupRead>b__6() in /_/src/Microsoft.AspNet.SignalR.Core/PersistentConnection.cs:line 282
+   at Microsoft.AspNet.SignalR

@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="EBCI_BackEnd/EBCI_BackEnd.csproj" Id="7c0d0f38-2993-4c61-8cce-fdd8f1003b04">
+    <Platform Solution="*|x86" Project="x86" />
+    <Platform Solution="Debug|Any CPU" Project="x86" />
+  </Project>
+  <Project Path="EBCI_FrontEnd/EBCI_FrontEnd.csproj">
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="EBCI_Library/EBCI_Library.csproj" Id="891578ee-86ef-415a-a28c-a9b99e76e22b">
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+</Solution>

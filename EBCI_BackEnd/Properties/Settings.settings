@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='iso-8859-2'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EBCI_BackEnd.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogsPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\karol\Desktop\EBCI\EBCI_Backend</Value>
+    </Setting>
+    <Setting Name="XLUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ADMIN</Value>
+    </Setting>
+    <Setting Name="XLPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="XLDatabaseName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEMO</Value>
+    </Setting>
+    <Setting Name="XLLicenseServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

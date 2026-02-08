@@ -1,18 +1,21 @@
 ﻿@page "/new-shipment"
-@using EBCI_FrontEnd.Models.Shipment
+@using EBCI_FrontEnd.Services
+@using EBCI_Library.Models
+@using EBCI_Library.Services
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Web
 @inject NavigationManager Navigation
+@rendermode RenderMode.InteractiveServer
 
 <PageTitle>New shipment form</PageTitle>
 
 <div class="ns-card">
     <header class="ns-card-header">
-        <h1 class="ns-title">Add new shipment</h1>
+        <h1 class="ns-title">Add new shipment to XL</h1>
         <p class="ns-subtitle">Fill the required fields and submit the shipment.</p>
     </header>
 
-    <EditForm Model="NewShipment" OnValidSubmit="Submit" FormName="NewShipmentForm" class="ns-form">
+    <EditForm Model="NewShipment" OnValidSubmit="Submit_Button_Clicked" FormName="NewShipmentForm" class="ns-form">
         <DataAnnotationsValidator />
         <ValidationSummary class="ns-validation-summary" />
 
@@ -20,23 +23,22 @@
             <div class="ns-field">
                 <label class="ns-label" for="supplier">
                     Supplier code
-                    <span class="ns-required">*</span>
                 </label>
 
                 <div class="ns-input-group">
-                    <span class="ns-icon">🏷️</span>
                     <InputText id="supplier"
                                class="ns-input"
                                @bind-Value="NewShipment.SupplierCode"
-                               placeholder="E.g. SUP-123" />
+                               placeholder="e.g. BCB" />
                 </div>
                 <ValidationMessage For="@(() => NewShipment.SupplierCode)" class="ns-field-validation" />
             </div>
 
             <div class="ns-field">
-                <label class="ns-label" for="shipmentDate">Shipment date <span class="ns-required">*</span></label>
+                <label class="ns-label" for="shipmentDate">
+                    Shipment date
+                </label>
                 <div class="ns-input-group">
-                    <span class="ns-icon">📅</span>
                     <InputDate id="shipmentDate"
                                class="ns-input"
                                @bind-Value="NewShipment.ShipmentDate" />
@@ -45,13 +47,14 @@
             </div>
 
             <div class="ns-field ns-full">
-                <label class="ns-label" for="warehouse">Warehouse code <span class="ns-required">*</span></label>
+                <label class="ns-label" for="warehouse">
+                    Warehouse code
+                </label>
                 <div class="ns-input-group">
-                    <span class="ns-icon">🏬</span>
                     <InputText id="warehouse"
                                class="ns-input"
                                @bind-Value="NewShipment.WarehouseCode"
-                               placeholder="E.g. WH-A1" />
+                               placeholder="e.g. MAG" />
                 </div>
                 <ValidationMessage For="@(() => NewShipment.WarehouseCode)" class="ns-field-validation" />
             </div>
@@ -59,7 +62,7 @@
 
         <footer class="ns-actions">
             <button type="submit" class="ns-btn ns-btn-primary">Save shipment</button>
-            <button type="button" class="ns-btn" @onclick="Cancel">Cancel</button>
+            <button type="button" class="ns-btn" @onclick="() => Cancel_Button_Clicked()">Cancel</button>
         </footer>
 
         @if (!string.IsNullOrEmpty(StatusMessage)) {
@@ -74,10 +77,13 @@
     [SupplyParameterFromForm]
     private Shipment NewShipment { get; set; }
 
+    [Inject]
+    private ISignalService SignalService { get; set; }
+
     private string StatusMessage { get; set; }
     private bool IsSuccess { get; set; }
 
-    protected override void OnInitialized() =>
+    protected override void OnInitialized() {
         NewShipment ??= new() {
             SupplierCode = string.Empty,
             ShipmentDate = DateTime.Now,
@@ -85,14 +91,37 @@
             Positions = Array.Empty<ShipmentPosition>()
         };
 
-    private void Submit() {
-        // Basic client feedback — replace with server call / API as needed
-        IsSuccess = true;
-        StatusMessage = $"Shipment for supplier '{NewShipment.SupplierCode}' scheduled for {NewShipment.ShipmentDate:d} saved.";
-        // TODO: call backend API, show spinner, handle errors
+        // TODO - Add getting list of warehouses
     }
 
-    private void Cancel() {
+    private async void Submit_Button_Clicked() {
+        try {
+            if (string.IsNullOrEmpty(NewShipment.SupplierCode)) {
+                IsSuccess = false;
+                StatusMessage = "Supplier code cannot be empty!";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(NewShipment.WarehouseCode)) {
+                IsSuccess = false;
+                StatusMessage = "Warehouse code cannot be empty!";
+                return;
+            }
+            // TODO - Add validation for available suppliers and warehouse codes
+
+            var result = await SignalService.TryToAddShipment(new NewShipmentRequest { Shipment = NewShipment });
+            IsSuccess = result.IsSuccess;
+            StatusMessage = result.ResponseMessage;
+        } catch (Exception ex) {
+            LogService.Error($"Exception occured at {nameof(Submit_Button_Clicked)}, message: {ex.Message}", ex);
+            IsSuccess = false;
+            StatusMessage = $"Exception occured: {ex.Message}, check logs at: {LogService.LogsPath}";
+        }
+
+        StateHasChanged();
+    }
+
+    private void Cancel_Button_Clicked() {
         Navigation.NavigateTo("/");
     }
 }

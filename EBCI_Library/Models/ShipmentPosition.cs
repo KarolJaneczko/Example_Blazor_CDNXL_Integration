@@ -2,6 +2,7 @@
 
 namespace EBCI_Library.Models {
     public class ShipmentPosition {
+        public int Lp {  get; set; }
         public string ProductCode { get; set; }
         // Corresponds to [TrE_Ilosc] column [CDN].[TraElem] of type (decimal(11,4), null)
         public decimal Quantity { get; set; }

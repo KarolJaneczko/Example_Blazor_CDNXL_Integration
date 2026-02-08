@@ -58,10 +58,17 @@
                 </div>
                 <ValidationMessage For="@(() => NewShipment.WarehouseCode)" class="ns-field-validation" />
             </div>
+
+            <div>
+                @foreach (var position in NewShipmentPositions) {
+                    <div>@position.Lp</div>
+                }
+            </div>
         </div>
 
         <footer class="ns-actions">
             <button type="submit" class="ns-btn ns-btn-primary">Save shipment</button>
+            <button type="button" class="ns-btn" @onclick="() => AddPosition_Button_Clicked()">Add position</button>
             <button type="button" class="ns-btn" @onclick="() => Cancel_Button_Clicked()">Cancel</button>
         </footer>
 
@@ -80,6 +87,7 @@
     [Inject]
     private ISignalService SignalService { get; set; }
 
+    private List<ShipmentPosition> NewShipmentPositions = new List<ShipmentPosition>();
     private string StatusMessage { get; set; }
     private bool IsSuccess { get; set; }
 
@@ -107,6 +115,10 @@
                 StatusMessage = "Warehouse code cannot be empty!";
                 return;
             }
+
+            if (!(NewShipment.Positions?.Any() ?? false)) {
+
+            }
             // TODO - Add validation for available suppliers and warehouse codes
 
             var result = await SignalService.TryToAddShipment(new NewShipmentRequest { Shipment = NewShipment });
@@ -119,6 +131,10 @@
         }
 
         StateHasChanged();
+    }
+
+    private void AddPosition_Button_Clicked() {
+        NewShipmentPositions.Add(new ShipmentPosition { Lp = NewShipmentPositions.Count + 1 });
     }
 
     private void Cancel_Button_Clicked() {

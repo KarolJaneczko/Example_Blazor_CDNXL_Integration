@@ -5,7 +5,6 @@ using EBCI_Library.Services;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Globalization;
-using System.Web.UI.WebControls;
 
 namespace EBCI_BackEnd.Hubs {
     public class MainHub : Hub {
@@ -17,7 +16,9 @@ namespace EBCI_BackEnd.Hubs {
         private readonly int XLBatchId = Properties.Settings.Default.XLBatchId;
 
         public NewShipmentResponse ExchangeData(NewShipmentRequest request) {
-            // todo validating request, add validation service to the library
+            // todo validating request, add validation service to the library - object validation
+
+            // todo data validation - checking if everything exist in the database/xl
 
             if (!XLService.Login(XLUser, XLPassword, XLDatabaseName, XLLicenseServer, out var loginMessage)) {
                 return new NewShipmentResponse(false, loginMessage);
@@ -48,14 +49,13 @@ namespace EBCI_BackEnd.Hubs {
             }
 
             LogService.Info("\t1 - Created the document successfully");
-            var lp = 1;
             foreach (var position in shipment.Positions) {
                 var elemInfo = new XLDokumentElemInfo_20251 {
                     Ilosc = position.Quantity.ToString(),
                     TowarKod = position.ProductCode,
                     JmZ = "szt.",
                     Magazyn = nagInfoResult.MagazynD,
-                    GIDLp = lp++,
+                    GIDLp = position.Lp,
                     DataWaznosci = ConvertDateTimeToClarionDate(position.ExpirationDate),
                     CChNumer = XLBatchId,
                     CChLp = 1,

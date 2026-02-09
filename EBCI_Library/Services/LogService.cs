@@ -4,7 +4,6 @@ using NLog.Config;
 using NLog.Targets;
 using System;
 using System.IO;
-using System.Reflection;
 
 namespace EBCI_Library.Services {
     public static class LogService {

@@ -5,15 +5,17 @@ using EBCI_Library.Services;
 namespace EBCI_FrontEnd {
     public static class Program {
         private static void Main(string[] args) {
-            //todo parametrize
-            LogService.Configure(@"C:\Users\karol\Desktop\EBCI\EBCI_Frontend");
-
             var builder = WebApplication.CreateBuilder(args);
+            builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+            builder.Services.AddScoped<IConfigurationService, ConfigurationService>();
             builder.Services.AddScoped<ISignalService, SignalService>();
-            var app = builder.Build();
 
+            var configurationService = new ConfigurationService(builder.Configuration);
+            LogService.Configure(configurationService.GetLogsPath());
+
+            var app = builder.Build();
             if (!app.Environment.IsDevelopment()) {
                 app.UseExceptionHandler("/Error", createScopeForErrors: true);
                 app.UseHsts();

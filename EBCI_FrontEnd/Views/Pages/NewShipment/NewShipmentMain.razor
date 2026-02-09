@@ -142,10 +142,11 @@
     private ISignalService SignalService { get; set; }
 
     private readonly List<ShipmentPosition> NewShipmentPositions = new List<ShipmentPosition>();
+    private HashSet<string> Suppliers, Warehouses, Products;
     private string StatusMessage { get; set; }
     private bool IsSuccess { get; set; }
 
-    protected override void OnInitialized() {
+    protected override async Task OnInitializedAsync() {
         NewShipment ??= new() {
             SupplierCode = string.Empty,
             ShipmentDate = DateTime.Now,
@@ -153,51 +154,47 @@
             Positions = Array.Empty<ShipmentPosition>()
         };
 
-        // TODO - Add getting list of warehouses
+        var listsResponse = await SignalService.TryToSyncLists();
+        Suppliers = new HashSet<string>(listsResponse.Suppliers);
+        Warehouses = new HashSet<string>(listsResponse.Warehouses);
+        Products = new HashSet<string>(listsResponse.Products);
+        await base.OnInitializedAsync();
     }
+
 
     private async void Submit_Button_Clicked() {
         try {
-            if (string.IsNullOrEmpty(NewShipment.SupplierCode)) {
-                IsSuccess = false;
-                StatusMessage = "Supplier code cannot be empty!";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(NewShipment.WarehouseCode)) {
-                IsSuccess = false;
-                StatusMessage = "Warehouse code cannot be empty!";
-                return;
-            }
-
-            if (NewShipmentPositions.Count == 0) {
-                IsSuccess = false;
-                StatusMessage = "Positions cannot be empty!";
-                return;
-            }
-            // TODO - Add validation for available suppliers and warehouse codes
-
-            foreach (var position in NewShipmentPositions) {
-                if (string.IsNullOrEmpty(position.ProductCode)) {
-                    IsSuccess = false;
-                    StatusMessage = $"Position (LP: {position.Lp}) has an empty product code!";
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(position.Batch)) {
-                    IsSuccess = false;
-                    StatusMessage = $"Position (LP: {position.Lp}) has an empty batch!";
-                    return;
-                }
-
-                if (position.ExpirationDate.Date > DateTime.Now.Date) {
-                    IsSuccess = false;
-                    StatusMessage = $"Position (LP: {position.Lp}) has an expiration date set in the future!";
-                    return;
-                }
-            }
-
+            IsSuccess = true;
+            StatusMessage = null;
             NewShipment.Positions = NewShipmentPositions;
+
+            if (!NewShipment.Validate(out var message)) {
+                StatusMessage = message;
+                IsSuccess = false;
+                return;
+            }
+
+            if (!Suppliers.Any(x => x.ToLower().Trim() == NewShipment.SupplierCode.ToLower().Trim())) {
+                StatusMessage = $"There is no '{NewShipment.SupplierCode}' supplier registered in Comarch ERP XL configuration!";
+                IsSuccess = false;
+                return;
+            }
+
+            if (!Warehouses.Any(x => x.ToLower().Trim() == NewShipment.WarehouseCode.ToLower().Trim())) {
+                StatusMessage = $"There is no '{NewShipment.WarehouseCode}' warehouse registered in Comarch ERP XL configuration!";
+                IsSuccess = false;
+                return;
+            }
+
+            foreach (var position in NewShipment.Positions) {
+                var productCode = position.ProductCode;
+
+                if (!Products.Any(x => x.ToLower().Trim() == productCode.ToLower().Trim())) {
+                    StatusMessage = $"There is no '{productCode}' (LP: {position.Lp}) product registered in Comarch ERP XL configuration!";
+                    IsSuccess = false;
+                    return;
+                }
+            }
 
             // todo loading indicator
             var result = await SignalService.TryToAddShipment(new NewShipmentRequest { Shipment = NewShipment });
@@ -222,7 +219,6 @@
     private void RemovePostition_Button_Clicked(ShipmentPosition shipmentPosition) {
         NewShipmentPositions.Remove(shipmentPosition);
 
-        // Renumerating lps
         var i = 1;
         foreach (var newShipmentPosition in NewShipmentPositions) {
             newShipmentPosition.Lp = i++;

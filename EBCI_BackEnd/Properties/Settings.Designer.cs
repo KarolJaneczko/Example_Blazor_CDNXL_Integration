@@ -76,5 +76,41 @@ namespace EBCI_BackEnd.Properties {
                 return ((int)(this["XLBatchId"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("KJ-LAPTOP")]
+        public string DBServer {
+            get {
+                return ((string)(this["DBServer"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CDNXL_DEMO")]
+        public string DBName {
+            get {
+                return ((string)(this["DBName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("sa")]
+        public string DBUser {
+            get {
+                return ((string)(this["DBUser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HaloBaza123abc")]
+        public string DBPassword {
+            get {
+                return ((string)(this["DBPassword"]));
+            }
+        }
     }
 }

@@ -1,20 +1,44 @@
 ﻿using EBCI_Library.Models;
 using EBCI_Library.Services;
 using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Hubs;
 
 namespace EBCI_FrontEnd.Services {
     public interface ISignalService {
+        Task<ShipmentListsResponse> TryToSyncLists();
         Task<NewShipmentResponse> TryToAddShipment(NewShipmentRequest request);
     }
 
-    public class SignalService : ISignalService {
+    public class SignalService(IConfigurationService configurationService) : ISignalService {
+        private readonly IConfigurationService _configurationService = configurationService;
+
+        public async Task<ShipmentListsResponse> TryToSyncLists() {
+            ShipmentListsResponse response = null;
+
+            try {
+                var hubConnection = new HubConnection(_configurationService.GetHubConnectionUrl());
+                var hubProxy = hubConnection.CreateHubProxy("MainHub");
+
+                await hubConnection.Start();
+                response = await hubProxy.Invoke<ShipmentListsResponse>("GetLists");
+
+                hubConnection.Stop();
+            } catch (Exception ex) {
+                LogService.Error($"Unexpected error occured at {nameof(TryToSyncLists)} method of {nameof(SignalService)} service: {ex.Message}", ex);
+                response = new ShipmentListsResponse {
+                    Suppliers = null,
+                    Warehouses = null,
+                    Products = null,
+                };
+            }
+
+            return response;
+        }
+
         public async Task<NewShipmentResponse> TryToAddShipment(NewShipmentRequest request) {
             NewShipmentResponse response = null;
 
             try {
-                // todo parametrize this in config
-                var hubConnection = new HubConnection("https://localhost:44313");
+                var hubConnection = new HubConnection(_configurationService.GetHubConnectionUrl());
                 var hubProxy = hubConnection.CreateHubProxy("MainHub");
 
                 await hubConnection.Start();

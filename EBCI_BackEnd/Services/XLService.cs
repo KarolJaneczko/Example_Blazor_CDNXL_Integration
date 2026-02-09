@@ -3,6 +3,7 @@ using EBCI_BackEnd.Classes.Enums;
 
 namespace EBCI_BackEnd.Services {
     public class XLService {
+        private readonly string _user, _password, _databaseName, _licenseServer;
         private int SessionId;
         public int Version { get; }
 
@@ -11,17 +12,24 @@ namespace EBCI_BackEnd.Services {
             SessionId = -1;
         }
 
-        public bool Login(string user, string password, string databaseName, string licenseServer, out string message) {
+        public XLService(string user, string password, string databaseName, string licenseServer) : this() {
+            _user = user;
+            _password = password;
+            _databaseName = databaseName;
+            _licenseServer = licenseServer;
+        }
+
+        public bool Login(out string message) {
             message = null;
             var result = false;
 
             var loginInfo = new XLLoginInfo_20251 {
                 Wersja = Version,
                 ProgramID = "EBCI_BackEnd",
-                OpeIdent = user,
-                OpeHaslo = password,
-                Baza = databaseName,
-                SerwerKlucza = licenseServer,
+                OpeIdent = _user,
+                OpeHaslo = _password,
+                Baza = _databaseName,
+                SerwerKlucza = _licenseServer,
                 UtworzWlasnaSesje = 1,
                 Winieta = -1,
                 TrybWsadowy = 1

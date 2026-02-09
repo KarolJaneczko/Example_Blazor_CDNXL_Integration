@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace EBCI_BackEnd.Classes.Enums {
+﻿namespace EBCI_BackEnd.Classes.Enums {
     public enum XLMethodType {
         NowyDokument = 1,
         DodajPozycje = 2,
